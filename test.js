@@ -13,7 +13,7 @@ var assert = require('assert')
 
 var store = new CouchbaseStore({host:"127.0.0.1:8091", bucket:"default"});
 
-store.client.on('connect', function(){
+store.on('connect', function(){
     // #set()
     store.set('123', { cookie: { maxAge: 2000 }, name: 'cm' }, function(err, ok){
         assert.ok(!err, '#set() got an error');
