@@ -1,7 +1,7 @@
 {
     "name": "connect-couchbase",
     "description": "Couchbase session store for Connect",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "author": "Christopher Mina <christopher.mina@gmail.com>",
     "main": "./index.js",
     "repository": { "type": "git", "url": "git@github.com:christophermina/connect-couchbase.git" },
