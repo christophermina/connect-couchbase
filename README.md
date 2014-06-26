@@ -13,8 +13,22 @@ You can use like so, when setting up your Express 4.x app:
 ````
 var session = require('express-session');
 var CouchbaseStore = require('connect-couchbase')(session);
-var couchbaseStore = new CouchbaseStore({bucket:"default", host:"127.0.0.1:8091"}); //specifying host and bucket optional
+var couchbaseStore = new CouchbaseStore({
+    bucket:"default",               //optional
+    host:"127.0.0.1:8091",          //optional
+    connectionTimeout: 2000,        //optional
+    operationTimeout: 2000,         //optional
+    cachefile: '',                  //optional
+    ttl: 86400,                     //optional
+    prefix: 'sess'                  //optional
+});
 
+/*
+     *          cachefile: ''
+     *          ttl: 86400,
+     *          prefix: 'sess',
+     *          operationTimeout:2000,
+                connectionTimeout:2000,*/
 
 couchbaseStore.on('connect', function() {
     debug("Couchbase Session store is ready for use");
