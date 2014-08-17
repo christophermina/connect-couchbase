@@ -1,11 +1,14 @@
 {
     "name": "connect-couchbase",
-    "description": "Couchbase session store for Connect",
-    "version": "0.1.4",
+    "description": "Couchbase session store for Connect, updated for Couchnode 2.0.0-Beta",
+    "version": "0.2.0-Beta",
     "author": "Christopher Mina <christopher.mina@gmail.com>",
     "main": "./index.js",
     "repository": { "type": "git", "url": "git@github.com:christophermina/connect-couchbase.git" },
-    "dependencies": { "couchbase": "1.2.x", "debug": "*" },
+    "dependencies": {
+        "couchbase": "git+https://github.com/couchbase/couchnode.git",
+        "debug": "*"
+    },
     "devDependencies": { "express-session": "*" },
     "engines": { "node": "*" },
     "bugs": {
