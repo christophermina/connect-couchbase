@@ -11,6 +11,7 @@ This is based off of connect-redis, found at https://github.com/visionmedia/conn
 You can use like so, when setting up your Express 4.x app:
 
 ````
+var debug = require('debug')('Couchbase Session Store Example)
 var session = require('express-session');
 var CouchbaseStore = require('connect-couchbase')(session);
 var couchbaseStore = new CouchbaseStore({
