@@ -25,20 +25,31 @@ store.on('connect', function(){
             assert.ok(!err, '#get() got an error');
             assert.deepEqual({ cookie: { maxAge: 2000 }, name: 'cm' }, data);
 
-            // #set null
-            store.set('123', { cookie: { maxAge: 2000 }, name: 'cm' }, function(err){
+            // #all()
+            store.all(function(err, sessions) {
                 if (err) {
-                    console.log("AN ERROR OCCURRED SETTING SESSION: " + err);
+                    console.log("AN ERROR OCCURRED GETTING ALL SESSION: " + err);
                 }
 
-                store.destroy('123', function(err){
+                if (sessions.length != 0) {
+                    assert.deepEqual({ cookie: { maxAge: 2000 }, name: 'cm' }, sessions[0]);
+                }
+
+                // #set null
+                store.set('123', { cookie: { maxAge: 2000 }, name: 'cm' }, function(err){
                     if (err) {
-                        console.log("AN ERROR OCCURRED DESTROYING SESSION: " + err);
+                        console.log("AN ERROR OCCURRED SETTING SESSION: " + err);
                     }
 
-                    console.log('done');
-                    store.client.shutdown();
-                    process.exit(0);
+                    store.destroy('123', function(err){
+                        if (err) {
+                            console.log("AN ERROR OCCURRED DESTROYING SESSION: " + err);
+                        }
+
+                        console.log('done');
+                        store.client.disconnect();
+                        process.exit(0);
+                    });
                 });
             });
             throw new Error('Error in fn');
