@@ -4,7 +4,8 @@ connect-couchbase
 NodeJS Session Store for Couchbase backed applications.
 
 ````
-npm install connect-couchbase
+add "connect-couchbase": "Umarahmad87/connect-couchbase#master" in "dependencies" in package.json
+yarn install
 ````
 
 This is based off of connect-redis, found at https://github.com/visionmedia/connect-redis.
@@ -15,8 +16,10 @@ var debug = require('debug')('Couchbase Session Store Example')
 var session = require('express-session');
 var CouchbaseStore = require('connect-couchbase')(session);
 var couchbaseStore = new CouchbaseStore({
+    username: "admin",              // mandatory
+    password: "password",           // mandatory
     bucket:"default",               //optional
-    host:"127.0.0.1:8091",          //optional
+    host:"couchbase://localhost",   //optional
     connectionTimeout: 2000,        //optional
     operationTimeout: 2000,         //optional
     cachefile: '',                  //optional
